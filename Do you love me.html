@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Love Yousef?</title>
+    <style>
+        body {
+            background-color: darkgreen;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 50px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: fit-content;
+        }
+        button {
+            font-size: 24px;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 10px;
+        }
+        #yes {
+            background-color: green;
+            color: white;
+        }
+        #no {
+            background-color: red;
+            color: white;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <h1>Do you love Youssef?</h1>
+    <div class="buttons">
+        <button id="yes" onclick="loveYousef()">YES</button>
+        <button id="no" onclick="moveNo()">NO</button>
+    </div>
+
+    <script>
+        function loveYousef() {
+            document.body.innerHTML = `
+                <h1 style='color:darkred; font-size:40px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); white-space: nowrap;'>❤️ I love you too ❤️</h1>
+            `;
+            document.body.style.backgroundColor = "pink";
+            document.body.style.display = "flex";
+            document.body.style.justifyContent = "center";
+            document.body.style.alignItems = "center";
+            document.body.style.height = "100vh";
+        }
+
+        function moveNo() {
+            let noButton = document.getElementById("no");
+            let parent = document.querySelector(".buttons");
+
+            let maxX = parent.clientWidth - noButton.offsetWidth;
+            let maxY = parent.clientHeight - noButton.offsetHeight;
+
+            let randomOffsetX = (Math.random() * 200) - 100; // حركة أكبر قليلاً (100 بكسل يمين أو يسار)
+            let randomOffsetY = (Math.random() * 60) - 30; // حركة أكبر قليلاً (30 بكسل فوق أو تحت)
+
+            let newX = Math.min(Math.max(noButton.offsetLeft + randomOffsetX, 0), maxX);
+            let newY = Math.min(Math.max(noButton.offsetTop + randomOffsetY, 0), maxY);
+
+            noButton.style.transform = `translate(${randomOffsetX}px, ${randomOffsetY}px)`;
+        }
+    </script>
+
+</body></html>
